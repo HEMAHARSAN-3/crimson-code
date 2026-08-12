@@ -1,24 +1,82 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/portfolio/Navbar";
+import { Hero } from "@/components/portfolio/Hero";
+import { About } from "@/components/portfolio/About";
+import { Projects } from "@/components/portfolio/Projects";
+import { SkillMatrix } from "@/components/portfolio/SkillMatrix";
+import {
+  ExperienceTimeline,
+  EducationTimeline,
+  Recognition,
+} from "@/components/portfolio/Timelines";
+import {
+  RecruiterSnapshot,
+  HowIThink,
+} from "@/components/portfolio/Sections";
+import { ContactForm, Footer } from "@/components/portfolio/Contact";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title =
+  "Hema Harsan R — AI/ML Engineer | Machine Learning & Computer Vision";
+const description =
+  "Portfolio of Hema Harsan R, an AI/ML Engineer focused on Machine Learning, Deep Learning, Computer Vision and software development.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Hema Harsan R",
+          jobTitle: "AI/ML Engineer",
+          email: "mailto:hemaharsan3@gmail.com",
+          sameAs: [
+            "https://github.com/HEMAHARSAN-3",
+            "https://www.linkedin.com/in/hema-harsan-r/",
+          ],
+          knowsAbout: [
+            "Machine Learning",
+            "Deep Learning",
+            "Computer Vision",
+            "Python",
+            "Django",
+          ],
+          alumniOf: "Dr. N.G.P. Institute of Technology, Coimbatore",
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <SkillMatrix />
+        <ExperienceTimeline />
+        <EducationTimeline />
+        <Recognition />
+        <RecruiterSnapshot />
+        <HowIThink />
+        <ContactForm />
+      </main>
+      <Footer />
+    </>
   );
 }
