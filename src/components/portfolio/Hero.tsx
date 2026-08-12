@@ -38,7 +38,7 @@ export function Hero() {
   };
 
   const rise = (delay: number) => ({
-    initial: reduced ? undefined : { opacity: 0, y: 26 },
+    initial: reduced ? (false as const) : { opacity: 0, y: 26 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.9, delay, ease },
   });
@@ -136,7 +136,7 @@ export function Hero() {
           style={{ perspective: 1200 }}
         >
           <motion.div
-            style={reduced ? undefined : { rotateX, rotateY, x: shiftX }}
+            style={reduced ? {} : { rotateX, rotateY, x: shiftX }}
             className="relative mx-auto max-w-sm border border-border lg:max-w-none"
           >
             <div className="absolute -top-px -left-px z-10 size-4 border-t-2 border-l-2 border-primary" />
