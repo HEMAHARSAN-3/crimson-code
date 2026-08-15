@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Pin Netlify output (dist + .netlify/functions-internal) for self-hosted deploys.
+  // Lovable sandbox builds still use Cloudflare; Netlify auto-detects via NETLIFY env too.
+  nitro: {
+    preset: "netlify",
+  },
 });

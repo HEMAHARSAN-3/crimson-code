@@ -86,6 +86,26 @@ npm run build
 npm run preview
 ```
 
+### Deploy to Netlify
+
+This project uses TanStack Start with Nitro's Netlify preset. Netlify is configured via `netlify.toml`:
+
+- **Build command:** `npm run build`
+- **Publish directory:** `dist`
+- **Node.js:** 22 (see `.nvmrc`)
+
+Connect your GitHub repo in the [Netlify dashboard](https://app.netlify.com/) and deploy from `main`. Netlify runs SSR through `.netlify/functions-internal` automatically.
+
+Set these environment variables in Netlify (**Site settings → Environment variables**) for the contact form:
+
+```env
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+```
+
+> **Note:** `packageManager` is set to npm so Netlify uses `npm install` with `package-lock.json`, even though `bun.lock` is also present for Lovable.
+
 ---
 
 ## Project Structure
